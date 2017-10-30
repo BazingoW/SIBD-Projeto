@@ -20,25 +20,25 @@ create table Patient
 
 create table Doctor
 	(patient_number	varchar(255),
-	 doctor_id	int(10) UNSIGNED,
+	 doctor_id	varchar(255),
 	 primary key(doctor_id),
 	 foreign key (patient_number) references Patient(patient_number));
 
 create table Device
-	(serialnum int(10) UNSIGNED,
+	(serialnum varchar(255),
 	 manufacturer varchar(255),
 	 model varchar(255),
 	 primary key(serialnum, manufacturer));
 
 create table Sensor
-	(serialnum int(10) UNSIGNED,
+	(serialnum varchar(255),
 	 manufacturer varchar(255),
 	 units varchar(255),
 	 primary key(serialnum, manufacturer),
 	 foreign key(serialnum, manufacturer) references Device(serialnum, manufacturer));
 
 create table Reading
-	(serialnum int(10) UNSIGNED,
+	(serialnum varchar(255),
 	 manufacturer varchar(255),
 	 read_date datetime,
 	 value float(10,2),
@@ -46,13 +46,13 @@ create table Reading
 	 foreign key(serialnum, manufacturer) references Sensor(serialnum, manufacturer));
 
 create table Period
-	(start_date datetime,
-	 end_date datetime,
+	(start_date timestamp,
+	 end_date timestamp,
 	 primary key(start_date, end_date));
 
 create table Wears
-	(start_date datetime,
-	 end_date datetime,
+	(start_date timestamp,
+	 end_date timestamp,
 	 patient_number varchar(255),
 	 serialnum int(10) UNSIGNED,
 	 manufacturer varchar(255),
@@ -64,7 +64,7 @@ create table Wears
 create table Request
 	(request_number int(10) UNSIGNED,
 	 patient_number varchar(255),
-	 doctor_id int(10) UNSIGNED,
+	 doctor_id varchar(255),
 	 request_date date,
 	 primary key(request_number),
 	 foreign key(patient_number) references Patient(patient_number),
@@ -74,9 +74,9 @@ create table Study
 	(request_number int(10) UNSIGNED,
 	 description varchar(255),
 	 study_date date,
-	 doctor_id int(10) UNSIGNED,
+	 doctor_id varchar(255),
 	 manufacturer varchar(255),
-	 serialnum int(10) UNSIGNED,
+	 serialnum varchar(255),
 	 primary key(request_number, description),
 	 foreign key(request_number) references Request(request_number),
 	 foreign key(doctor_id) references Doctor(doctor_id),
