@@ -40,9 +40,9 @@ create table Sensor
 create table Reading
 	(serialnum varchar(255),
 	 manufacturer varchar(255),
-	 read_date timestamp,
+	 read_datetime timestamp,
 	 value float(10,2),
-	 primary key(serialnum, manufacturer),
+	 primary key(serialnum, manufacturer, read_datetime),
 	 foreign key(serialnum, manufacturer) references Sensor(serialnum, manufacturer));
 
 create table Period
