@@ -1,24 +1,24 @@
-insert into Patient values ('557799LZ', 'John Smith', '1990-07-01', 'London');
-insert into Patient values ('879865PL', 'Roger Smith', '1987-05-05', 'Liverpool');
-insert into Patient values ('427511SI', 'James Bond', '1975-08-30', 'Bristol');
-insert into Patient values ('511324GH', 'Kelly Fernandez', '1985-10-06', 'London');
-insert into Patient values ('462378TR', 'Liz Wang', '1987-12-25', 'Birmingham');
-insert into Patient values ('988994ER', 'Richard Gun', '1965-11-15', 'Manchester');
-insert into Patient values ('001278WQ', 'Gisele Joly', '1950-02-07', 'Manchester');
-insert into Patient values ('904568UK', 'Isaac Newton', '1966-04-09', 'Sheffield');
-insert into Patient values ('718890KP', 'Lilian Holmes', '1955-06-20', 'Liverpool');
-insert into Patient values ('111555CB', 'Wellington Ramirez', '1959-09-14', 'London');
+insert into Patient values ('P-1', 'John Smith', '1990-07-01', 'London');
+insert into Patient values ('P-2', 'Roger Smith', '1987-05-05', 'Liverpool');
+insert into Patient values ('P-3', 'James Bond', '1975-08-30', 'Bristol');
+insert into Patient values ('P-4', 'Kelly Fernandez', '1985-10-06', 'London');
+insert into Patient values ('P-5', 'Liz Wang', '1987-12-25', 'Birmingham');
+insert into Patient values ('P-6', 'Richard Gun', '1965-11-15', 'Manchester');
+insert into Patient values ('P-7', 'Gisele Joly', '1950-02-07', 'Manchester');
+insert into Patient values ('P-8', 'Isaac Newton', '1966-04-09', 'Sheffield');
+insert into Patient values ('P-9', 'Lilian Holmes', '1955-06-20', 'Liverpool');
+insert into Patient values ('P-10', 'Wellington Ramirez', '1959-09-14', 'London');
 
-insert into Doctor values ('557799LZ', 'D101');
-insert into Doctor values ('879865PL', 'D102');
-insert into Doctor values ('427511SI', 'D103');
-insert into Doctor values ('511324GH', 'D104');
-insert into Doctor values ('462378TR', 'D105');
-insert into Doctor values ('988994ER', 'D106');
-insert into Doctor values ('001278WQ', 'D107');
-insert into Doctor values ('904568UK', 'D108');
-insert into Doctor values ('718890KP', 'D109');
-insert into Doctor values ('111555CB', 'D110');
+insert into Doctor values ('P-1', 'D-101');
+insert into Doctor values ('P-2', 'D-102');
+insert into Doctor values ('P-3', 'D-103');
+insert into Doctor values ('P-4', 'D-104');
+insert into Doctor values ('P-5', 'D-105');
+insert into Doctor values ('P-6', 'D-106');
+insert into Doctor values ('P-7', 'D-107');
+insert into Doctor values ('P-8', 'D-108');
+insert into Doctor values ('P-9', 'D-109');
+insert into Doctor values ('P-10', 'D-110');
 
 insert into Device values ('S1', 'Siemens', 's6373');
 insert into Device values ('B1', 'Bosch', 'b7566');
@@ -72,9 +72,18 @@ insert into Reading values ('E1', 'Envitec', '2017-01-30 16:27:44', 255);
 insert into Reading values ('E2', 'Envitec', '2017-05-29 19:42:28', 265);
 
 insert into Period values ('2017-04-01 10:00:01', '2017-10-31 17:18:19');
-insert into Period values ('2017-01-17 08:11:17', '2017-12-31 19:00:91');
+insert into Period values ('2017-01-17 08:11:17', '2017-10-25 19:00:91');
+insert into Period values ('2016-01-02 10:08:00', '2999-12-31 00:00:00');
+insert into Period values ('2017-03-04 12:34:55', '2999-12-31 00:00:00');
+insert into Period values ('2015-05-08 22:30:05', '2999-12-31 00:00:00');
+insert into Period values ('2016-02-26 13:08:45', '2999-12-31 00:00:00');
+insert into Period values ('2016-07-31 15:03:41', '2017-09-17 13:00:07');
+insert into Period values ('2016-08-26 21:00:23', '2017-02-23 17:55:42');
+insert into Period values ('2017-04-06 12:07:44', '2999-12-31 00:00:00');
+insert into Period values ('2016-01-12 00:00:00', '2017-11-02 07:15:18');
+insert into Period values ('2017-05-10 11:12:15', '2999-12-31 00:00:00');
 
-
+insert into Wears values ('2017-04-01 10:00:01', '2017-10-31 17:18:19', )
 
 
 

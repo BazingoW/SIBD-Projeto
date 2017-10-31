@@ -54,7 +54,7 @@ create table Wears
 	(start_date timestamp,
 	 end_date timestamp,
 	 patient_number varchar(255),
-	 serialnum int(10) UNSIGNED,
+	 serialnum varchar(255),
 	 manufacturer varchar(255),
 	 primary key(start_date, end_date, patient_number),
 	 foreign key(start_date, end_date) references Period(start_date, end_date),
