@@ -20,13 +20,14 @@ insert into Doctor values ('P-8', 'D-108');
 insert into Doctor values ('P-9', 'D-109');
 insert into Doctor values ('P-10', 'D-110');
 
+-- Sensors
 insert into Device values ('S1', 'Siemens', 's6373');
 insert into Device values ('B1', 'Bosch', 'b7566');
-insert into Device values ('M1', 'Medtronic', 'm9800');
-insert into Device values ('M2', 'Medtronic', 'm7658');
-insert into Device values ('M3', 'Medtronic', 'm3333');
-insert into Device values ('M4', 'Medtronic', 'm3333');
-insert into Device values ('M5', 'Medtronic', 'm9800');
+insert into Device values ('A1', 'Airsense', 'a9800');
+insert into Device values ('A2', 'Airsense', 'a7658');
+insert into Device values ('A3', 'Airsense', 'a3333');
+insert into Device values ('A4', 'Airsense', 'a3333');
+insert into Device values ('A5', 'Airsense', 'a9800');
 insert into Device values ('S2', 'Siemens', 's3421');
 insert into Device values ('B2', 'Bosch', 'b8765');
 insert into Device values ('T1', 'Thermotec', 't2990');
@@ -36,40 +37,59 @@ insert into Device values ('H2', 'Honeywell', 'h4444');
 insert into Device values ('E1', 'Envitec', 'e5876');
 insert into Device values ('E2', 'Envitec', 'e5876');
 
-insert into Sensor values ('S1', 'Siemens', 'mg/dL');
-insert into Sensor values ('B1', 'Bosch', 'g/dL');
-insert into Sensor values ('M1', 'Medtronic', 'mg/dL');
-insert into Sensor values ('M2', 'Medtronic', 'g/dL');
-insert into Sensor values ('M3', 'Medtronic', 'mg/dL');
-insert into Sensor values ('M4', 'Medtronic', 'mg/dL');
-insert into Sensor values ('M5', 'Medtronic', 'mg/dL');
-insert into Sensor values ('S2', 'Siemens', 'g/dL');
-insert into Sensor values ('B2', 'Bosch', 'mg/dL');
-insert into Sensor values ('T1', 'Thermotec', 'mg/dL');
-insert into Sensor values ('T2', 'Thermotec', 'mg/dL');
-insert into Sensor values ('H1', 'Honeywell', 'mg/dL');
-insert into Sensor values ('H2', 'Honeywell', 'g/dL');
-insert into Sensor values ('E1', 'Envitec', 'mg/dL');
-insert into Sensor values ('E2', 'Envitec', 'mg/dL');
+-- Equipments
+insert into Device values ('M1', 'Medtronic', 'm7891');
+insert into Device values ('M2', 'Medtronic', 'm4536');
+insert into Device values ('M3', 'Medtronic', 'm6543');
+insert into Device values ('M4', 'Medtronic', 'm9023');
+insert into Device values ('M5', 'Medtronic', 'm7123');
+insert into Device values ('M6', 'Medtronic', 'm6531');
+insert into Device values ('S3', 'Siemens', 's4040');
+insert into Device values ('S4', 'Siemens', 's3131');
+insert into Device values ('S5', 'Siemens', 's1111');
+insert into Device values ('B3', 'Bosch', 'b4589');
+insert into Device values ('B4', 'Bosch', 'b3232');
+insert into Device values ('B5', 'Bosch', 'b4455');
+insert into Device values ('I1', 'Iberdata', 'i3030');
+insert into Device values ('I2', 'Iberdata', 'i9009');
+insert into Device values ('I3', 'Iberdata', 'i7050');
+insert into Device values ('I4', 'Iberdata', 'i3553');
+insert into Device values ('I5', 'Iberdata', 'i7005');
 
-insert into Reading values ('S1', 'Siemens', '2017-09-01 18:20:00', 7.8);
-insert into Reading values ('S1', 'Siemens', '2017-09-01 18:21:00', 10.5);
-insert into Reading values ('B1', 'Bosch', '2017-10-15 10:17:55', 20.75);
-insert into Reading values ('M1', 'Medtronic', '2017-07-31 15:25:45', 217);
-insert into Reading values ('M1', 'Medtronic', '2017-08-7 08:54:07', 225);
-insert into Reading values ('M2', 'Medtronic', '2017-10-31 09:57:35', 5.7);
-insert into Reading values ('M2', 'Medtronic', '2017-02-17 11:47:59', 6.7);
-insert into Reading values ('M3', 'Medtronic', '2016-12-25 20:20:20', 300);
-insert into Reading values ('M4', 'Medtronic', '2017-01-20 23:17:05', 190);
-insert into Reading values ('M5', 'Medtronic', '2017-03-29 21:40:47', 200);
-insert into Reading values ('S2', 'Siemens', '2017-10-29 19:20:27', 3.2);
-insert into Reading values ('B2', 'Bosch', '2017-09-14 10:39:06', 315);
-insert into Reading values ('T1', 'Thermotec', '2017-10-28 07:44:21', 215);
-insert into Reading values ('T2', 'Thermotec', '2016-04-06 09:45:17', 235);
-insert into Reading values ('H1', 'Honeywell', '2017-10-31 12:55:59', 175);
-insert into Reading values ('H2', 'Honeywell', '2017-04-17 14:32:58', 17.1);
-insert into Reading values ('E1', 'Envitec', '2017-01-30 16:27:44', 255);
-insert into Reading values ('E2', 'Envitec', '2017-05-29 19:42:28', 265);
+insert into Sensor values ('S1', 'Siemens', 'LDL cholesterol mg/dL');
+insert into Sensor values ('B1', 'Bosch', 'Creatinine mg/L');
+insert into Sensor values ('A1', 'Airsense', 'HDL cholesterol mg/dL');
+insert into Sensor values ('A2', 'Airsense', 'Hemoglobin g/dL');
+insert into Sensor values ('A3', 'Airsense', 'Creatinine mg/L');
+insert into Sensor values ('A4', 'Airsense', 'Creatinine mg/L');
+insert into Sensor values ('A5', 'Airsense', 'Hemoglobin g/dL');
+insert into Sensor values ('S2', 'Siemens', 'HDL cholesterol mg/dL');
+insert into Sensor values ('B2', 'Bosch', 'LDL cholesterol mg/dL');
+insert into Sensor values ('T1', 'Thermotec', 'Temperature ºC');
+insert into Sensor values ('T2', 'Thermotec', 'Temperature ºC');
+insert into Sensor values ('H1', 'Honeywell', 'Glucose level mmol/L');
+insert into Sensor values ('H2', 'Honeywell', 'Glucose level mmol/L');
+insert into Sensor values ('E1', 'Envitec', 'Hemoglobin g/dL');
+insert into Sensor values ('E2', 'Envitec', 'Creatinine mg/L');
+
+insert into Reading values ('S1', 'Siemens', '2017-10-30 18:20:00', 217);
+insert into Reading values ('S1', 'Siemens', '2017-10-30 18:21:00', 225);
+insert into Reading values ('B1', 'Bosch', '2017-10-15 10:17:55', 10.1);
+insert into Reading values ('A1', 'Airsense', '2017-07-31 15:25:45', 77);
+insert into Reading values ('A1', 'Airsense', '2017-08-7 08:54:07', 100);
+insert into Reading values ('A2', 'Airsense', '2017-10-31 09:57:35', 12.8);
+insert into Reading values ('A2', 'Airsense', '2017-03-17 11:47:59', 15.7);
+insert into Reading values ('A3', 'Airsense', '2016-12-25 20:20:20', 8.2);
+insert into Reading values ('A4', 'Airsense', '2017-01-20 23:17:05', 11.8);
+insert into Reading values ('A5', 'Airsense', '2017-03-29 21:40:47', 17.2);
+insert into Reading values ('S2', 'Siemens', '2017-01-29 19:20:27', 117);
+insert into Reading values ('B2', 'Bosch', '2017-10-14 10:39:06', 224);
+insert into Reading values ('T1', 'Thermotec', '2017-10-28 07:44:21', 35);
+insert into Reading values ('T2', 'Thermotec', '2016-04-06 09:45:17', 36.5);
+insert into Reading values ('H1', 'Honeywell', '2017-10-31 12:55:59', 5.9);
+insert into Reading values ('H2', 'Honeywell', '2016-04-17 14:32:58', 7.5);
+insert into Reading values ('E1', 'Envitec', '2016-01-30 16:27:44', 17.9);
+insert into Reading values ('E2', 'Envitec', '2017-05-29 19:42:28', 12.2);
 
 insert into Period values ('2017-04-01 10:00:01', '2017-10-31 17:18:19');
 insert into Period values ('2017-01-17 08:11:17', '2017-10-25 19:00:91');
@@ -82,15 +102,64 @@ insert into Period values ('2016-08-26 21:00:23', '2017-02-23 17:55:42');
 insert into Period values ('2017-04-06 12:07:44', '2999-12-31 00:00:00');
 insert into Period values ('2016-01-12 00:00:00', '2017-11-02 07:15:18');
 insert into Period values ('2017-05-10 11:12:15', '2999-12-31 00:00:00');
+insert into Period values ('2017-05-10 11:12:15', '2999-12-31 00:00:00');
+insert into Period values ('2016-04-2 08:11:17', '2016-12-15 00:00:00');
+insert into Period values ('2016-03-20 20:17:25', '2017-01-01 10:00:10');
+insert into Period values ('2016-01-07 12:00:15', '2016-04-28 17:17:17');
+insert into Period values ('2016-01-02 09:30:27', '2016-01-07 18:20:24');
 
-insert into Wears values ('2017-04-01 10:00:01', '2017-10-31 17:18:19', )
+insert into Wears values ('2017-04-01 10:00:01', '2017-10-31 17:18:19', 'P-1', 'S1', 'Siemens');
+insert into Wears values ('2017-01-17 08:11:17', '2017-10-25 19:00:91', 'P-2', 'B1', 'Bosch');
+insert into Wears values ('2016-01-02 10:08:00', '2999-12-31 00:00:00', 'P-3', 'A1', 'AirSense');
+insert into Wears values ('2017-03-04 12:34:55', '2999-12-31 00:00:00', 'P-4', 'A2', 'AirSense');
+insert into Wears values ('2015-05-08 22:30:05', '2999-12-31 00:00:00', 'P-5', 'A3', 'AirSense');
+insert into Wears values ('2016-02-26 13:08:45', '2999-12-31 00:00:00', 'P-6', 'A4', 'AirSense');
+insert into Wears values ('2016-07-31 15:03:41', '2017-09-17 13:00:07', 'P-7', 'A5', 'AirSense');
+insert into Wears values ('2016-08-26 21:00:23', '2017-02-23 17:55:42', 'P-8', 'S2', 'Siemens');
+insert into Wears values ('2017-04-06 12:07:44', '2999-12-31 00:00:00', 'P-9', 'B2', 'Bosch');
+insert into Wears values ('2016-01-12 00:00:00', '2017-11-02 07:15:18', 'P-10', 'T1', 'Thermotec');
+insert into Wears values ('2017-05-10 11:12:15', '2999-12-31 00:00:00', 'P-8', 'H1', 'Honeywell');
+insert into Wears values ('2016-04-02 08:11:10', '2016-12-15 00:01:10', 'P-2', 'T2', 'Thermotec');
+insert into Wears values ('2016-03-20 20:17:25', '2017-01-01 10:00:10', 'P-1', 'H2', 'Honeywell');
+insert into Wears values ('2016-01-07 12:00:15', '2016-04-28 17:17:17', 'P-7', 'E1', 'Envitec');
+insert into Wears values ('2016-01-02 09:30:27', '2016-01-07 18:20:24', 'P-10', 'E2', 'Envitec');
+
+insert into Request values (1, 'P-1', 'D-101', '2017-02-07');
+insert into Request values (2, 'P-2', 'D-102', '2017-07-17');
+insert into Request values (3, 'P-3', 'D-103', '2017-05-15');
+insert into Request values (4, 'P-4', 'D-104', '2017-08-31');
+insert into Request values (5, 'P-5', 'D-105', '2017-10-16');
+insert into Request values (6, 'P-6', 'D-106', '2017-09-21');
+insert into Request values (7, 'P-7', 'D-107', '2017-04-19');
+insert into Request values (8, 'P-8', 'D-108', '2017-01-21');
+insert into Request values (9, 'P-9', 'D-109', '2016-12-16');
+insert into Request values (10, 'P-10' 'D-110', '2017-06-25');
+insert into Request values (11, 'P-5', 'D-105', '2017-05-09');
+insert into Request values (12, 'P-7', 'D-107', '2017-10-24');
+insert into Request values (13, 'P-8', 'D-108', '2016-07-05');
+insert into Request values (14, 'P-2', 'D-102', '2016-04-02');
+insert into Request values (15, 'P-1', 'D-101', '2016-10-09');
+insert into Request values (16, 'P-3', 'D-103', '2017-09-06');
+insert into Request values (17, 'P-4', 'D-104', '2017-03-11');
 
 
-
-
-
-
-
+insert into Study values (1, 'X-ray both feet', '2017-03-05', 'D-102', 'Medtronic', 'M1');
+insert into Study values (2, 'Ecography right foot', '2017-08-30', 'D-101', 'Medtronic', 'M2');
+insert into Study values (3, 'Endoscopy esophagus', '2017-06-02', 'D-105', 'Medtronic', 'M3');
+insert into Study values (4, 'Endoscopy stomach', '2017-10-07', 'D-103', 'Medtronic', 'M4');
+insert into Study values (5, 'Echocardiography', '2017-10-31', 'D-104', 'Medtronic', 'M5');
+insert into Study values (6, 'Mammography', '2017-03-05', 'D-107', 'Medtronic', 'M6');
+insert into Study values (7, 'Colonoscopy', '2017-05-12', 'D-110', 'Siemens', 'S3');
+insert into Study values (8, 'Magnetic Resonance left shoulder', '2017-02-25', 'D-101', 'Siemens', 'S4');
+insert into Study values (9, 'Magnetic Resonance right knee', '2017-01-08', 'D-108', 'Siemens', 'S5');
+insert into Study values (10, 'Electrocardiogram', '2017-07-27', 'D-109', 'Bosch', 'B3');
+insert into Study values (11, 'Electrocardiogram', '2017-10-08', 'D-106', 'Bosch', 'B4');
+insert into Study values (12, 'Prostate Specific Antigen', '2017-10-31', 'D-102', 'Bosch', 'B5');
+insert into Study values (13, 'Mammography', '2017-07-27', 'D-107', 'Iberdata', 'I1');
+insert into Study values (14, 'Colonoscopy', '2017-05-09', 'D-105', 'Iberdata', 'I2');
+insert into Study values (15, 'Echocardiography', '2017-10-29', 'D-108', 'Iberdata', 'I3');
+insert into Study values (16, 'X-ray chest', '2017-10-01', 'D-102', 'Iberdata', 'I4');
+insert into Study values (17, 'X-ray elbow', '2017-05-27', 'D-101', 'Iberdata', 'I5');
 
 
 
