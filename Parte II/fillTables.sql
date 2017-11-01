@@ -127,12 +127,12 @@ insert into Wears values ('2016-03-20 20:17:25', '2017-01-01 10:00:10', 'P-1', '
 insert into Wears values ('2016-01-07 12:00:15', '2016-04-28 17:17:17', 'P-7', 'E1', 'Envitec');
 insert into Wears values ('2016-01-02 09:30:27', '2016-01-07 18:20:24', 'P-10', 'E2', 'Envitec');
 
-insert into Request values (1, 'P-1', 'D-101', '2017-02-07');
+insert into Request values (1, 'P-1', 'D-101', '2016-02-07');
 insert into Request values (2, 'P-2', 'D-102', '2017-07-17');
-insert into Request values (3, 'P-3', 'D-103', '2017-05-15');
+insert into Request values (3, 'P-3', 'D-103', '2016-05-15');
 insert into Request values (4, 'P-4', 'D-104', '2017-08-31');
-insert into Request values (5, 'P-5', 'D-105', '2017-10-16');
-insert into Request values (6, 'P-6', 'D-106', '2017-09-21');
+insert into Request values (5, 'P-5', 'D-105', '2016-10-16');
+insert into Request values (6, 'P-6', 'D-106', '2016-09-21');
 insert into Request values (7, 'P-7', 'D-107', '2017-04-19');
 insert into Request values (8, 'P-8', 'D-108', '2017-01-21');
 insert into Request values (9, 'P-9', 'D-109', '2016-12-16');
@@ -146,12 +146,12 @@ insert into Request values (16, 'P-3', 'D-103', '2017-09-06');
 insert into Request values (17, 'P-4', 'D-104', '2017-03-11');
 
 
-insert into Study values (1, 'X-ray both feet', '2017-03-05', 'D-102', 'Medtronic', 'M1');
+insert into Study values (1, 'X-ray both feet', '2016-03-05', 'D-102', 'Medtronic', 'M1');
 insert into Study values (2, 'Ecography both feet', '2017-08-30', 'D-101', 'Medtronic', 'M2');
-insert into Study values (3, 'Endoscopy esophagus', '2017-06-02', 'D-105', 'Medtronic', 'M3');
+insert into Study values (3, 'Endoscopy esophagus', '2016-06-02', 'D-105', 'Medtronic', 'M3');
 insert into Study values (4, 'Endoscopy stomach', '2017-10-07', 'D-103', 'Medtronic', 'M4');
-insert into Study values (5, 'Echocardiography', '2017-10-31', 'D-104', 'Medtronic', 'M5');
-insert into Study values (6, 'Mammography', '2017-03-05', 'D-107', 'Medtronic', 'M6');
+insert into Study values (5, 'Echocardiography', '2016-10-31', 'D-104', 'Medtronic', 'M5');
+insert into Study values (6, 'Mammography', '2016-03-05', 'D-107', 'Medtronic', 'M6');
 insert into Study values (7, 'Colonoscopy', '2017-05-12', 'D-110', 'Siemens', 'S3');
 insert into Study values (8, 'Magnetic Resonance both shoulders', '2017-02-25', 'D-101', 'Siemens', 'S4');
 insert into Study values (9, 'Magnetic Resonance both knees', '2017-01-08', 'D-108', 'Siemens', 'S5');
