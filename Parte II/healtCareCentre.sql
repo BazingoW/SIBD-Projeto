@@ -100,12 +100,12 @@ create table Element
 create table Region
 	(series_id int(10) UNSIGNED,
 	 elem_index int(10) UNSIGNED,
-	 x1 float(2,1),
-	 y1 float(2,1),
-	 x2 float(2,1),
-	 y2 float(2,1),
+	 x1 float(4,3),
+	 y1 float(4,3),
+	 x2 float(4,3),
+	 y2 float(4,3),
 	 primary key(series_id, elem_index, x1, y1, x2, y2)
-	 foreign key(series_id) references Element(series_id, elem_index));
+	 foreign key(series_id, elem_index) references Element(series_id, elem_index));
 
 
 
