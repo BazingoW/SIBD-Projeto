@@ -149,8 +149,6 @@ insert into Request values (19, 'P-3', 'D-103', '2016-04-03');
 insert into Request values (20, 'P-3', 'D-103', '2016-07-20');
 insert into Request values (21, 'P-3', 'D-103', '2016-09-07');
 
-
-
 insert into Study values (1, 'X-ray both feet', '2016-03-05', 'D-102', 'Medtronic', 'M1');
 insert into Study values (2, 'Ecography both feet', '2017-08-30', 'D-101', 'Medtronic', 'M2');
 insert into Study values (3, 'Endoscopy esophagus', '2016-06-02', 'D-105', 'Medtronic', 'M3');

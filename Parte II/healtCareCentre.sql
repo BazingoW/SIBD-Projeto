@@ -107,17 +107,3 @@ create table Region
 	 primary key(series_id, elem_index, x1, y1, x2, y2)
 	 foreign key(series_id, elem_index) references Element(series_id, elem_index));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

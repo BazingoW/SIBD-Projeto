@@ -15,7 +15,7 @@ where not exists(select d.manufacturer
 				 where d.manufacturer like 'Medtronic'
 				 and d.manufacturer not in (select s.manufacturer
 				 							from study as s, Doctor as d, Patient as p
-				 							where d.doctor_id = s.doctor_id and d.patient_number = p.patient_number));
+				 							where d.doctor_id = s.doctor_id and d.patient_number = p.patient_number)) and TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1;;
 
 -- Patients with the highest number of readings of LDL cholesterol above 200 in the past 90 days
 
