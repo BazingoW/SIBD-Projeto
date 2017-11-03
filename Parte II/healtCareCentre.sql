@@ -15,7 +15,7 @@ create table Patient
 	(patient_number	varchar(255),
 	 patient_name	varchar(255),
 	 birthday	date,
-	 address	varchar(255)
+	 address	varchar(255),
 	 primary key(patient_number));
 
 create table Doctor
@@ -80,7 +80,7 @@ create table Study
 	 primary key(request_number, description),
 	 foreign key(request_number) references Request(request_number),
 	 foreign key(doctor_id) references Doctor(doctor_id),
-	 foreign key(manufacturer, serialnum) references Device(manufacturer, serialnum));
+	 foreign key(serialnum, manufacturer) references Device(serialnum, manufacturer));
 
 create table Series
 	(series_id int(10) UNSIGNED,
@@ -88,12 +88,12 @@ create table Series
 	 base_url varchar(255),
 	 request_number int(10) UNSIGNED,
 	 description varchar(255),
-	 primary key(series_id)
+	 primary key(series_id),
 	 foreign key(request_number, description) references Study(request_number, description));
 
 create table Element
 	(series_id int(10) UNSIGNED,
-	 elem_index int(10) UNSIGNED AUTO_INCREMENT,
+	 elem_index int(10) UNSIGNED,
 	 primary key(series_id, elem_index),
 	 foreign key(series_id) references Series(series_id));
 
@@ -104,6 +104,6 @@ create table Region
 	 y1 float(4,3),
 	 x2 float(4,3),
 	 y2 float(4,3),
-	 primary key(series_id, elem_index, x1, y1, x2, y2)
+	 primary key(series_id, elem_index, x1, y1, x2, y2),
 	 foreign key(series_id, elem_index) references Element(series_id, elem_index));
 

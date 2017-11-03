@@ -14,11 +14,20 @@ where not exists(select d.manufacturer
 				 from Device as d
 				 where d.manufacturer like 'Medtronic'
 				 and d.manufacturer not in (select s.manufacturer
-				 							from study as s, Doctor as d, Patient as p
-				 							where d.doctor_id = s.doctor_id and d.patient_number = p.patient_number)) and TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1;;
+				 							from Study as s, Doctor as d, Patient as p
+				 							where d.doctor_id = s.doctor_id and 
+				 							d.patient_number = p.patient_number and 
+											TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1));
 
 -- Patients with the highest number of readings of LDL cholesterol above 200 in the past 90 days
 
 select patient_name
-from Patient as p, Reading as r, Sensor as s, Wears as w
-where r.serialnum = w.serialnum and r.manufacturer = w.manufacturer and s.serialnum = r.serialnum and s.manufacturer = r.manufacturer and p.patient_number = w.patient_number and r.value > 200 and s.units like 'LDL cholesterol in mg/dL' and TIMESTAMPDIFF(day, r.read_datetime, CURRENT_TIMESTAMP()) <= 90;
+from Patient natural join Reading natural join Sensor natural join Wears
+where value > 200 and units like 'LDL cholesterol mg/dL' and 
+	  TIMESTAMPDIFF(day, read_datetime, CURRENT_TIMESTAMP()) <= 90
+group by patient_name
+having count(value) >= all(select count(value)
+							from Patient natural join Reading natural join Sensor natural join Wears
+							where value > 200 and units like 'LDL cholesterol mg/dL' and 
+	  						TIMESTAMPDIFF(day, read_datetime, CURRENT_TIMESTAMP()) <= 90
+							group by patient_name);
