@@ -1,23 +1,16 @@
 -- Query name of patients with studies made by all Medtronic devices in the past year
 
---select patient_name
---from Patient as p, Study as s, Device as d1, Doctor as d2
---where p.patient_number = d2.patient_number and s.doctor_id = d2.doctor_id and s.manufacturer = d1.manufacturer and s.serialnum = d1.serialnum and s.manufacturer like 'Medtronic' and DATEPART(yy, s.study_date) = DATEPART(yy, DATEADD(yy, -1, getdate()));
-
---select patient_name
---from Patient as p, Study as s, Device as d1, Doctor as d2
---where p.patient_number = d2.patient_number and s.doctor_id = d2.doctor_id and s.manufacturer = d1.manufacturer and s.serialnum = d1.serialnum and s.manufacturer like 'Medtronic' and TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1;
-
 select patient_name
-from Patient
-where not exists(select d.manufacturer
+from Patient as p
+where not exists(select serialnum
 				 from Device as d
-				 where d.manufacturer like 'Medtronic'
-				 and d.manufacturer not in (select s.manufacturer
-				 							from Study as s, Doctor as d, Patient as p
-				 							where d.doctor_id = s.doctor_id and 
-				 							d.patient_number = p.patient_number and 
-											TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1));
+				 where manufacturer like 'Medtronic'
+				 and serialnum not in (select serialnum
+			 							from Study as s, Request as r, Patient as p2
+			 							where s.request_number = r.request_number and
+			 							r.patient_number = p2.patient_number and
+			 							TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1 and
+			 							p.patient_name = p2.patient_name));
 
 -- Patients with the highest number of readings of LDL cholesterol above 200 in the past 90 days
 

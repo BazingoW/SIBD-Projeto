@@ -169,7 +169,7 @@ insert into Study values (17, 'X-ray both elbows', '2017-05-27', 'D-101', 'Iberd
 insert into Study values (18, 'X-ray right foot', '2016-03-25', 'D-104', 'Medtronic', 'M1');
 insert into Study values (19, 'Ecography left foot', '2016-08-31', 'D-109', 'Medtronic', 'M2');
 insert into Study values (20, 'Endoscopy stomach', '2016-10-10', 'D-110', 'Medtronic', 'M4');
-insert into Study values (21, 'Echocardiography', '2016-11-17', 'D-105', 'Medtronic', 'M5');
+insert into Study values (21, 'Echocardiography', '2016-10-17', 'D-105', 'Medtronic', 'M5');
 
 insert into Series values (1, 'X-ray right foot', 'http://www.healthcarecentre/11/', 1, 'X-ray both feet');
 insert into Series values (2, 'X-ray left foot', 'http://www.healthcarecentre/21/', 1, 'X-ray both feet');
