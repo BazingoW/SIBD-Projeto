@@ -29,21 +29,49 @@ delimiter;
 --II)
 
 delimiter$$
-create trigger prevent_association before insert on Wears
+create trigger prevent__device_association before insert on Wears
 for each row
 begin
-
-	signal sqlstate '45000' set message_text = 'Overlapping Periods';
-
+	if(serialnum = new.serialnum and manufacturer = new.manufacturer and
+		((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0 and TIMESTAMPDIFF(second, new.end_date, end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, start_date, new.start_date) >= 0 and TIMESTAMPDIFF(second, end_date, new.end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, start_date, new.start_date) >= 0 and TIMESTAMPDIFF(second, new.end_date, end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, new.start_date, start_date) >= 0 and TIMESTAMPDIFF(second, end_date, new.end_date) >= 0))) then
+		
+		signal sqlstate '45000' set message_text = 'Overlapping Periods';
+	end if;
 end$$
 delimiter;
 
 delimiter$$
-create trigger prevent_association update on Wears
+create trigger prevent_device_association before update on Wears
 for each row
 begin
-
-	signal sqlstate '45000' set message_text = 'Overlapping Periods';
-
+	if(serialnum = new.serialnum and manufacturer = new.manufacturer and
+		((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0 and TIMESTAMPDIFF(second, new.end_date, end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, start_date, new.start_date) >= 0 and TIMESTAMPDIFF(second, end_date, new.end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, start_date, new.start_date) >= 0 and TIMESTAMPDIFF(second, new.end_date, end_date) >= 0) or
+		 (TIMESTAMPDIFF(second, new.start_date, start_date) >= 0 and TIMESTAMPDIFF(second, end_date, new.end_date) >= 0))) then
+		
+		signal sqlstate '45000' set message_text = 'Overlapping Periods';
+	end if;
 end$$
 delimiter;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

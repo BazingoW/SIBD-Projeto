@@ -16,11 +16,11 @@ where not exists(select serialnum
 
 select patient_name
 from Patient natural join Reading natural join Sensor natural join Wears
-where value > 200 and units like 'LDL cholesterol mg/dL' and 
+where value > 200 and units like 'LDL cholesterol in mg/dL' and 
 	  TIMESTAMPDIFF(day, read_datetime, CURRENT_TIMESTAMP()) <= 90
 group by patient_name
 having count(value) >= all(select count(value)
 							from Patient natural join Reading natural join Sensor natural join Wears
-							where value > 200 and units like 'LDL cholesterol mg/dL' and 
+							where value > 200 and units like 'LDL cholesterol in mg/dL' and 
 	  						TIMESTAMPDIFF(day, read_datetime, CURRENT_TIMESTAMP()) <= 90
 							group by patient_name);
