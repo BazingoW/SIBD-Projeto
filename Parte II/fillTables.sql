@@ -105,7 +105,6 @@ insert into Period values ('2016-08-26 21:00:23', '2017-02-23 17:55:42');
 insert into Period values ('2017-04-06 12:07:44', '2999-12-31 00:00:00');
 insert into Period values ('2016-01-12 00:00:00', '2017-11-02 07:15:18');
 insert into Period values ('2017-05-10 11:12:15', '2999-12-31 00:00:00');
-insert into Period values ('2017-05-10 11:12:15', '2999-12-31 00:00:00');
 insert into Period values ('2016-04-2 08:11:17', '2016-12-15 00:00:00');
 insert into Period values ('2016-03-20 20:17:25', '2017-01-01 10:00:10');
 insert into Period values ('2016-01-07 12:00:15', '2016-04-28 17:17:17');
@@ -301,6 +300,3 @@ insert into Region values (22, 1, 0.534, 0.756, 0.867, 0.957);
 insert into Region values (22, 2, 0.476, 0.874, 0.565, 0.878);
 insert into Region values (22, 3, 0.223, 0.345, 0.678, 0.967);
 insert into Region values (22, 4, 0.234, 0.678, 0.456, 0.789);
-
-
-
