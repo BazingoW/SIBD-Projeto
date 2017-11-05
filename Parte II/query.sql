@@ -32,5 +32,5 @@ select patient_name
 from Patient natural join Reading natural join Sensor natural join Wears
 where value > 200 and units like 'LDL cholesterol in mg/dL' and
 	  TIMESTAMPDIFF(day, read_datetime, CURRENT_TIMESTAMP()) <= 90 and
-		value>=  all(select value
-							from Reading);
+	  value >=  all(select value
+					from Reading);
