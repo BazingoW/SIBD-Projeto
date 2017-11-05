@@ -11,6 +11,7 @@ where not exists(select serialnum
 			 							r.patient_number = p2.patient_number and
 			 							TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1 and
 			 							p.patient_name = p2.patient_name));
+				 						
 
 -- Patients with the highest number of readings of LDL cholesterol above 200 in the past 90 days
 
