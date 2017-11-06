@@ -9,7 +9,7 @@ where not exists(select serialnum
 			 							from Study as s, Request as r, Patient as p2
 			 							where s.request_number = r.request_number and
 			 							r.patient_number = p2.patient_number and
-			 							TIMESTAMPDIFF(year, s.study_date, CURRENT_TIMESTAMP()) = 1 and
+			 							YEAR(s.study_date) = YEAR(CURRENT_DATE()) - 1 and
 			 							p.patient_name = p2.patient_name));
 
 
