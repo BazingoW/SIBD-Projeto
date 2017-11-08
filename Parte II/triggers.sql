@@ -59,7 +59,7 @@ begin
 end$$
 delimiter ;
 
---------
+-------- II) COM INIBIÇÂO DE O MESMO PACIENTE USAR DOIS DEVICES AO MESMO TEMPO
 
 
 delimiter $$
