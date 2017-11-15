@@ -111,6 +111,7 @@ insert into Period values ('2016-01-07 12:00:15', '2016-04-28 17:17:17');
 insert into Period values ('2016-01-02 09:30:27', '2016-01-07 18:20:24');
 insert into Period values ('2017-02-01 10:10:10', '2020-02-01 00:00:00');
 insert into Period values ('2017-11-01 00:00:00', '2017-11-05 00:00:00');
+insert into Period values ('2016-07-31 15:03:41', '2018-01-01 00:00:00');
 
 insert into Wears values ('2017-04-01 10:00:01', '2017-10-31 17:18:19', 'P-1', 'S1', 'Siemens');
 insert into Wears values ('2017-01-17 08:11:17', '2017-10-25 19:00:21', 'P-2', 'B1', 'Bosch');

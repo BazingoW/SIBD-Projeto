@@ -33,7 +33,7 @@ for each row
 begin
 	if exists(select *
 		  	  from Wears
-		 	  where serialnum = new.serialnum and manufacturer = new.manufacturer and
+		 	  where serialnum = new.serialnum and manufacturer = new.manufacturer and patient_number <> new.patient_number and
 		(((TIMESTAMPDIFF(second, start_date, new.end_date) >= 0) and (TIMESTAMPDIFF(second, new.end_date, end_date) >= 0)) or
 	 	((TIMESTAMPDIFF(second, start_date, new.start_date) >= 0) and (TIMESTAMPDIFF(second, new.start_date, end_date) >= 0)) or
 		 ((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0) and (TIMESTAMPDIFF(second, end_date, new.end_date) >= 0)))) then
@@ -49,7 +49,7 @@ for each row
 begin
 	if exists(select *
 		  	  from Wears
-		 	  where serialnum = new.serialnum and manufacturer = new.manufacturer and
+		 	  where serialnum = new.serialnum and manufacturer = new.manufacturer and patient_number <> new.patient_number and
 		(((TIMESTAMPDIFF(second, start_date, new.end_date) >= 0) and (TIMESTAMPDIFF(second, new.end_date, end_date) >= 0)) or
 	 	((TIMESTAMPDIFF(second, start_date, new.start_date) >= 0) and (TIMESTAMPDIFF(second, new.start_date, end_date) >= 0)) or
 		 ((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0) and (TIMESTAMPDIFF(second, end_date, new.end_date) >= 0)))) then
