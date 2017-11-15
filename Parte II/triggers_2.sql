@@ -1,4 +1,4 @@
--- Trigger 1
+
 -- I)
 
 delimiter $$
@@ -25,7 +25,6 @@ end if;
 end$$
 delimiter ;
 
--- Trigger 2
 --II)
 
 delimiter $$
@@ -59,3 +58,41 @@ begin
 	end if;
 end$$
 delimiter ;
+
+-------- II) COM INIBIÇÂO DE O MESMO PACIENTE USAR DOIS DEVICES AO MESMO TEMPO
+
+
+delimiter $$
+create trigger prevent_device_association_insert before insert on Wears
+for each row
+begin
+	if exists(select *
+		  	  from Wears
+		 	  where (serialnum = new.serialnum and manufacturer = new.manufacturer) or (patient_number = new.patient_number) and
+		(((TIMESTAMPDIFF(second, start_date, new.end_date) >= 0) and (TIMESTAMPDIFF(second, new.end_date, end_date) >= 0)) or
+	 	((TIMESTAMPDIFF(second, start_date, new.start_date) >= 0) and (TIMESTAMPDIFF(second, new.start_date, end_date) >= 0)) or
+		 ((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0) and (TIMESTAMPDIFF(second, end_date, new.end_date) >= 0)))) then
+		
+		signal sqlstate '45000' set message_text = 'Overlapping Periods';
+	end if;
+end$$
+delimiter ;
+
+delimiter $$
+create trigger prevent_device_association_update before update on Wears
+for each row
+begin
+	if exists(select *
+		  	  from Wears
+		 	  where (serialnum = new.serialnum and manufacturer = new.manufacturer) or (patient_number = new.patient_number) and
+		(((TIMESTAMPDIFF(second, start_date, new.end_date) >= 0) and (TIMESTAMPDIFF(second, new.end_date, end_date) >= 0)) or
+	 	((TIMESTAMPDIFF(second, start_date, new.start_date) >= 0) and (TIMESTAMPDIFF(second, new.start_date, end_date) >= 0)) or
+		 ((TIMESTAMPDIFF(second, new.start_date, start_date) >= 0) and (TIMESTAMPDIFF(second, end_date, new.end_date) >= 0)))) then
+		
+		signal sqlstate '45000' set message_text = 'Overlapping Periods';
+	end if;
+end$$
+delimiter 
+
+
+
