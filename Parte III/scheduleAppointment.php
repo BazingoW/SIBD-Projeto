@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Schedule Appointment</title>
-	</head>
 	<body>
-		<h1><strong>Welcome to the Healthcare Centre</strong></h1>
+		<h1><strong>Schedule Appointment</strong></h1>
 		<hr/>
-
-
+		<form action="schedule.php" method="post">
+ 			<p>Doctor:
+				<select>
+					
+				</select> 
+				
+			</p>
+			<p><input type="submit" value="Search"/></p>
+		</form>
 	</body>
 </html>
