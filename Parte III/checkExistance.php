@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <html>
 	<body>
 	<h3><strong><font color= '#66CC00'>Check Patient Existence</font></strong></h3>
@@ -39,14 +38,11 @@
 			}
 
 			$nrows= $stmt->rowCount();
-			$_SESSION['nrows'] = $nrows;
 
 			if($nrows > 0)
 			{
-				$pushButton = 0;
-
 				echo("<table border=\"0\" cellspacing=\"5\" bordercolor='#66CC00'>");
-				echo("<tr><td bgcolor='#66CC00'><font color= '#FFFFFF'>Patient Number</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Patient Name</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Birthday</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Address</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Schedule Appointment</font></td></tr>");
+				echo("<tr><td bgcolor='#66CC00'><font color= '#FFFFFF'>Patient Number</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Patient Name</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Birthday</font></td><td bgcolor='#66CC00'><font color= '#FFFFFF'>Address</font></td></tr>");
 
 				foreach($stmt as $row)
 				{
@@ -62,8 +58,6 @@
 					echo("</td><td>");
 					$address=$row['address'];
 					echo($address);
-					echo("</td><td>");
-					echo("<a href=\"getAppointmentData.php?patient_number=$patient_number&name=$name&birthday=birthday&address=$address\"><center><font color= '#66CC00'>Book</center></font></a>");
 					echo("</td></tr>");
 				}
 
@@ -72,9 +66,11 @@
 			else
 			{
 				echo("<p>Patient not found!</p>");
-				echo("<p><button style=\"background-color: rgb(102,204,0);\" onclick=document.location.href=\"getAppointmentData.php?pushButton=1\"><font color= '#FFFFFF'>Register a new patient and schedule an appointment</font></p>");
 			}
 			
+			echo("<p><button style=\"background-color: rgb(102,204,0);\" onclick=document.location.href=\"getNewPatient.php?\"><font color= '#FFFFFF'>Register a new patient</font></p></button>");
+			echo("<p>Turn to the <a href=\"getPatient.php\">previous page</a></p>");
+
 			
 		}
 
