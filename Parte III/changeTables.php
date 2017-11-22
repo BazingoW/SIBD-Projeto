@@ -79,7 +79,7 @@
 
 
 			/* Updates the date of the replaced device to the current date */
-			$sql = "UPDATE Wears SET end_date = :currentTimeDate WHERE patient_number = :patient_number AND start_date = :oldStartDate AND end_date = :oldEndDate";
+			/*$sql = "UPDATE Wears SET end_date = :currentTimeDate WHERE patient_number = :patient_number AND start_date = :oldStartDate AND end_date = :oldEndDate";
 			$stmt = $connection->prepare($sql);
 			$stmt->bindParam(':currentTimeDate', $currentTimeDate);
 			$stmt->bindParam(':patient_number', $patient_number);
@@ -92,7 +92,7 @@
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
-			}
+			}/*
 
 			/*$newDevice = $_REQUEST['serialnum'];
 
