@@ -2,7 +2,6 @@
 	<body>
 	<h3><strong><font color= '#66CC00'>Check Patient Existence</font></strong></h3>
 	<hr/>
-	<form action="getNewPatient.php" method="post">
 <?php
 		$host = "db.tecnico.ulisboa.pt";
 		$user = "ist181731";
@@ -19,6 +18,8 @@
 			echo("</p>");
 			exit();
 		}
+
+		$name = $_REQUEST['name'];
 
 		$stmt = $connection->prepare("SELECT * FROM Patient WHERE name LIKE '%$_REQUEST[name]%'");
 		$stmt->execute();
@@ -44,14 +45,18 @@
 				$patient_number=$row['patient_number'];
 				echo($patient_number);
 				echo("</td><td>");
-				$name=$row['name'];
-				echo("<a href=\"getDevices.php?patient_number=$patient_number\">$name</a>");
+				$patient_name=$row['name'];
+				echo("<a href=\"getDevices.php?patient_number=$patient_number\">$patient_name</a>");
 				echo("</td><td>");
-				$birthday=$row['birthday'];
-				echo($birthday);
+				echo($row['birthday']);
 				echo("</td><td>");
-				$address=$row['address'];
-				echo($address);
+				echo($row['address']);
+				echo("</td><td>");
+				echo("<form action=\"newStudy.php\" method=\"get\">");
+				echo("<input type=\"hidden\" name=\"patient_number\" value=\"$patient_number\"/>");
+				echo("<input type=\"hidden\" name=\"patient_name\" value=\"$patient_name\"/>");
+				echo("<input type=\"submit\" value=\"New Study\"/>");
+				echo("</form>");
 				echo("</td></tr>");
 			}
 
@@ -61,11 +66,15 @@
 		{
 			echo("<p>Patient not found!</p>");
 		}
-		
-		echo("<p><input type=\"submit\" value=\"Register a New Patient\"/></p>");
-		echo("<p>Turn to the <a href=\"getPatient.php\">previous page</a></p>");
-
+?>	
+		<form action="getNewPatient.php" method="post">
+		<p><input type="submit" value="Register a New Patient"/></p>
+		</form>
+<?php
+	
+	echo("<p>Turn to the <a href=\"getPatient.php\">previous page</a></p>");
 	$connection = null;
 ?>
+	
  	</body>
 </html>
