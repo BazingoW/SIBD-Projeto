@@ -1,6 +1,8 @@
 <?php session_start(); ?>
 <html>
 	<body>
+		<h3><strong><font color= '#66CC00'>Replacement Confirmation</font></strong></h3>
+		<hr/>
 		<?php
 			$host = "db.tecnico.ulisboa.pt";
 			$user = "ist181731";
@@ -36,18 +38,18 @@
 				exit();
 			}
 
-			$periodExists = 0; /* To check if the period of the new device exists */
+			$newPeriodExists = 0; /* To check if the period of the new current device exists */
+			$updatePeriodExists = 0; /* To check if the period of the replaced device exists */
 
 			foreach($result as $row)
 			{
-				/* Confirms if the new period already exists in Database */
 				if($currentTimeDate == $row['start_date'] && $oldEndDate == $row['end_date'])
 				{
-					$replacePeriodExists = 1;
+					$newPeriodExists = 1;
 				}
 			}
 
-			if($periodExists == 0)
+			if($newPeriodExists == 0)
 			{
 				$stmt = $connection->prepare("INSERT INTO Period VALUES (:start_date, :end_date)");
 				$stmt->bindParam(':start_date', $currentTimeDate);
@@ -61,30 +63,36 @@
 					exit();
 				}
 			}
-
-
-			/*$sql = "UPDATE Period" . "SET end_date = :currentTimeDate" . "WHERE start_date = :oldStartDate AND end_date = :oldEndDate":
-			$stmt = $connection->prepare($sql);
-			$stmt->bindParam(':currentTimeDate', $currentTimeDate);
-			$stmt->bindParam(':oldStartDate', $oldStartDate);
-			$stmt->bindParam(':oldEndDate', $oldEndDate);
-			$stmt->execute();
-
-			if($stmt == FALSE)
+			foreach($result as $row)
 			{
-				$info = $connection->errorInfo();
-				echo("<p>Error: {$info[2]}</p>");
-				exit();
-			}*/
+				if($oldStartDate == $row['start_date'] && $currentTimeDate = $row['end_date'])
+				{
+					$updatePeriodExists = 1;
+				}
+			}
 
+			if($updatePeriodExists == 0)
+			{
+				$stmt = $connection->prepare("INSERT INTO Period VALUES (:start_date, :end_date)");
+				$stmt->bindParam(':start_date', $oldStartDate);
+				$stmt->bindParam(':end_date', $currentTimeDate);
+				$stmt->execute();
 
-			/* Updates the date of the replaced device to the current date */
-			/*$sql = "UPDATE Wears SET end_date = :currentTimeDate WHERE patient_number = :patient_number AND start_date = :oldStartDate AND end_date = :oldEndDate";
-			$stmt = $connection->prepare($sql);
+				if($stmt == FALSE)
+				{
+					$info = $connection->errorInfo();
+					echo("<p>Error: {$info[2]}</p>");
+					exit();
+				}
+			}
+
+			/* Updates the end date of the replaced device to the current date */
+			$stmt = $connection->prepare("UPDATE Wears SET start_date = :oldStartDate, end_date = :currentTimeDate WHERE patient_number = :patient_number AND start_date = :oldStartDate AND end_date = :oldEndDate");
 			$stmt->bindParam(':currentTimeDate', $currentTimeDate);
 			$stmt->bindParam(':patient_number', $patient_number);
 			$stmt->bindParam(':oldStartDate', $oldStartDate);
 			$stmt->bindParam(':oldEndDate', $oldEndDate);
+			$stmt->bindParam(':serialnum', $oldSerialNum);
 			$stmt->execute();
 
 			if($stmt == FALSE)
@@ -92,9 +100,9 @@
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
-			}/*
+			}
 
-			/*$newDevice = $_REQUEST['serialnum'];
+			$newDevice = $_REQUEST['serialnum'];
 
 			$stmt = $connection->prepare("INSERT INTO Wears VALUES (:start_date, :end_date, :patient_number, :serialnum, :manufacturer)");
 			$stmt->bindParam(':start_date', $currentTimeDate);
@@ -110,7 +118,7 @@
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
-			}*/
+			}
 
 			echo("<p>Device was replaced!</p>");
 			echo("<p><a href=\"getPatient.php\">Search for another patient</a></p>");

@@ -20,11 +20,12 @@
 		}
 
 		$name = $_REQUEST['name'];
+		$findName = "%" . $name . "%";
 
-		$stmt = $connection->prepare("SELECT * FROM Patient WHERE name LIKE '%$_REQUEST[name]%'");
+		$stmt = $connection->prepare("SELECT * FROM Patient WHERE name LIKE :findName");
+		$stmt->bindParam(':findName', $findName);
 		$stmt->execute();
-		//$stmt->bindParam(':name', $name);
-
+		
 		if($stmt == FALSE)
 		{
 			$info = $connection->errorInfo();
@@ -54,6 +55,7 @@
 				echo("</td><td>");
 				echo("<form action=\"newStudy.php\" method=\"get\">");
 				echo("<input type=\"hidden\" name=\"patient_number\" value=\"$patient_number\"/>");
+				echo("<input type=\"hidden\" name=\"name\" value=\"$name\"/>");
 				echo("<input type=\"hidden\" name=\"patient_name\" value=\"$patient_name\"/>");
 				echo("<input type=\"submit\" value=\"New Study\"/>");
 				echo("</form>");

@@ -59,15 +59,14 @@
 						$end_date = $row['end_date'];
 						echo($row['end_date']);
 						echo("</strong></td><td>");
-?>
-						<form action="replaceDevices.php" method="get">
-						<input type="hidden" name="serialnum" value="$serialnum"/>
-						<input type="hidden" name="manufacturer" value="$manufacturer"/>
-						<input type="hidden" name="start_date" value="$start_date"/>
-						<input type="hidden" name="end_date" value="$end_date"/>
-						<input type="submit" value="Replace"/>
-						</form>
-<?php
+						echo("<form action=\"replaceDevices.php\" method=\"get\">");
+						echo("<input type=\"hidden\" name=\"serialnum\" value=\"$serialnum\"/>");
+						echo("<input type=\"hidden\" name=\"manufacturer\" value=\"$manufacturer\"/>");
+						echo("<input type=\"hidden\" name=\"start_date\" value=\"$start_date\"/>");
+						echo("<input type=\"hidden\" name=\"end_date\" value=\"$end_date\"/>");
+						echo("<input type=\"submit\" value=\"Replace\"/>");
+						echo("</form>");
+						echo("</td></tr>");
 					}
 					else
 					{

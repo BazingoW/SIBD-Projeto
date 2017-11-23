@@ -31,7 +31,6 @@
 				$_SESSION['start_date'] = $_GET['start_date'];
 				$_SESSION['end_date'] = $_GET['end_date'];
 
-
 				$stmt = $connection->prepare("SELECT serialnum FROM Device WHERE serialnum<>'$serialnum' AND manufacturer='$manufacturer' AND serialnum NOT IN(SELECT serialnum FROM Wears WHERE serialnum<>'$serialnum' AND manufacturer='$manufacturer' AND TIMESTAMPDIFF(SECOND, end_date, CURRENT_TIMESTAMP()) <= 0)");
 				$stmt->execute();
 

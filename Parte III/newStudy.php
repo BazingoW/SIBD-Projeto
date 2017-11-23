@@ -3,7 +3,7 @@
 	<body>
 	<h3><strong><font color= '#66CC00'>New Study</font></strong></h3>
 	<hr/>
-	<form action="addNewStudy.php" method="post">
+	<form action="insertStudy.php" method="post">
 		<?php
 			if(isset($_GET['patient_number']) && isset($_GET['patient_name']))
 			{
@@ -25,11 +25,14 @@
 
 				$patient_number = $_GET['patient_number'];
 				$patient_name = $_GET['patient_name'];
+				$name = $_GET['name'];
+				$_SESSION['patient_number'] = $patient_number;
+				$_SESSION['patient_name'] = $patient_name;
 			}	
 		?>
 				<p>Request Number: <input type="text" name="request_number" required/></p>
 				<p>Description: <input type="text" name="description" required/></p>
-				<p>Date: <input type="date" name="study_date" required/></p>
+				<p>Study Date: <input type="date" name="study_date" required/></p>
 				<p>Doctor:
 					<select name="doctor_id">			
  		<?php
@@ -71,14 +74,15 @@
 							$serialnum = $row['serialnum'];
 							$manufacturer = $row['manufacturer'];
 
-							echo("<option value=\"$serialnum\">Serial Number: $serialnum | Manufacturer: $manufacturer</option>");
+							echo("<option value=\"$serialnum\">$serialnum | $manufacturer</option>");
 						}
 		?>
 					</select>
 				</p>
+				<p>Series name: <input type="text" name="series_name" required/></p>
 				<p><input type="submit" value="Add New Study"/></p>
 <?php
-		echo("<p>Turn to the <a href=\"checkExistance.php?patient_name=$patient_name\">previous page</a></p>");
+		echo("<p>Turn to the <a href=\"checkExistance.php?name=$name\">previous page</a></p>");
 		$connection = null;
 ?>
 	</form>
