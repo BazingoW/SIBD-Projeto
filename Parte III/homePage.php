@@ -6,10 +6,10 @@
  			<p>Search for/Insert a patient: <input type="submit" value="Search"/></p>
 		</form>
 		<form action="createStudy.php" method="post">
- 			<p>Create a study: <input type="submit" value="Search"/></p>
+ 			<p>Create a study: <input type="submit" value="New Study"/></p>
 		</form>
 		<form action="getRegion.php" method="post">
- 			<p>Add a region to an element: <input type="submit" value="Add Region"/></p>
+ 			<p>Add a region to an element: <input type="submit" value="New Region"/></p>
 		</form>
 	</body>
 </html>

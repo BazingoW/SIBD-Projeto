@@ -168,6 +168,8 @@
 						}
 					}				
 				}
+
+				echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
 			}
 			else
 			{

@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h1><strong><font color= '#66CC00'>Welcome to the Healthcare Centre</font></strong></h1>
+		<h3><strong><font color= '#66CC00'>Search for a Patient</font></strong></h3>
 		<hr/>
 		<form action="checkExistance.php" method="post">
  			<p>Patient Name:
