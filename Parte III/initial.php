@@ -8,7 +8,7 @@
 		<form action="createStudy.php" method="post">
  			<p>Create a study: <input type="submit" value="Search"/></p>
 		</form>
-		<form action="addRegion.php" method="post">
+		<form action="getRegion.php" method="post">
  			<p>Add a region to an element: <input type="submit" value="Add Region"/></p>
 		</form>
 	</body>

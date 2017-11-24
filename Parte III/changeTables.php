@@ -20,6 +20,8 @@
 				exit();
 			}
 
+			$connection->beginTransaction();
+
 			$patient_number = $_SESSION['patient_number'];
 			$oldSerialNum = $_SESSION['serialnum'];
 			$oldManufacturer = $_SESSION['manufacturer'];
@@ -33,6 +35,7 @@
 
 			if($result == FALSE)
 			{
+				$connection->rollback();
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
@@ -58,11 +61,13 @@
 
 				if($stmt == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
 				}
 			}
+			
 			foreach($result as $row)
 			{
 				if($oldStartDate == $row['start_date'] && $currentTimeDate = $row['end_date'])
@@ -80,6 +85,7 @@
 
 				if($stmt == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
@@ -97,6 +103,7 @@
 
 			if($stmt == FALSE)
 			{
+				$connection->rollback();
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
@@ -115,10 +122,13 @@
 
 			if($stmt == FALSE)
 			{
+				$connection->rollback();
 				$info = $connection->errorInfo();
 				echo("<p>Error: {$info[2]}</p>");
 				exit();
 			}
+
+			$connection->commit();
 
 			echo("<p>Device was replaced!</p>");
 			echo("<p><a href=\"getPatient.php\">Search for another patient</a></p>");

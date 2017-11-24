@@ -41,7 +41,7 @@
 				/* Begins transaction */
 				$connection->beginTransaction();
 
-				$sql = "SELECT request_number FROM Request";
+				$sql = "SELECT * FROM Request";
 				$result = $connection->query($sql);
 
 				if($result == FALSE)
@@ -65,30 +65,13 @@
 					}
 				}
 
-				/* If Request doesn't exists, it will be inserted */
-				if($requestExists == 0)
-				{
-					$stmt = $connection->prepare("INSERT INTO Request VALUES (:request_number, :patient_number, :doctor_id, :study_date)");
-					$stmt->bindParam(':request_number', $request_number);
-					$stmt->bindParam(':patient_number', $patient_number);
-					$stmt->bindParam(':doctor_id', $doctor_id);
-					$stmt->bindParam(':study_date', $study_date);
-					$stmt->execute();
-
-					if($stmt == FALSE)
-					{
-						$info = $connection->errorInfo();
-						echo("<p>Error: {$info[2]}</p>");
-						exit();
-					}
-				}
-		
 				/* Checks what is the manufacturer of the device with that serial number */
 				$getManufacturer = "SELECT manufacturer FROM Device WHERE serialnum = 'B3'";
 				$result = $connection->query($getManufacturer);
 
 				if($result == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
@@ -112,6 +95,7 @@
 
 				if($stmt == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
@@ -123,6 +107,7 @@
 
 				if($result == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
@@ -143,15 +128,24 @@
 
 				if($stmt == FALSE)
 				{
+					$connection->rollback();
 					$info = $connection->errorInfo();
 					echo("<p>Error: {$info[2]}</p>");
 					exit();
 				}
 
+				/* Study date has to be after request date and the request number should exists */
 				if($study_date < $request_date)
 				{
 					$connection->rollback();
+					echo("<p><The request date has to precede the study date/p>");
 					echo("<p>Study not created</p>");	
+				}
+				else if($requestExists == 0)
+				{
+					$connection->rollback();
+					echo("<p><The request number doesn't exist/p>");
+					echo("<p>Study not created</p>");
 				}
 				else
 				{
