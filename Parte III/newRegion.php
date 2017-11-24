@@ -75,79 +75,63 @@
 				if($seriesExists == 0)
 				{
 					$connection->rollback();
-					echo("<p>The series doesn't exist</p>");
+					echo("<p>The series or/and the element index don't exist</p>");
+					echo("<p>New Region not added</p>");
+					echo("<p>Turn to the <a href=\"newStudy.php\">previous page</a></p>");
 				}
 				else if($x1 > $x2 || $y1 > $y2)
 				{
 					$connection->rollback();
 					echo("<p>x2 and y2 have to be greater or equal than x1 and y2, respectively</p>");
 					echo("<p>New Region not added</p>");
+					echo("<p>Turn to the <a href=\"newStudy.php\">previous page</a></p>");
 				}
 				else
 				{
 					$connection->commit();
 					echo("<p>New Region Added</p>");
-				}
 
-				/* Check the description of the study of the region that was added */
-				$sql = "SELECT description FROM Series WHERE series_id = $series_id";
-				$result = $connection->query($sql);
+					/* Check the description of the study of the region that was added */
+					$sql = "SELECT description FROM Series WHERE series_id = $series_id";
+					$result = $connection->query($sql);
 
-				if($result == FALSE)
-				{
-					$info = $connection->errorInfo();
-					echo("<p>Error: {$info[2]}</p>");
-					exit();
-				}
-
-				foreach($result as $row)
-				{
-					$newestDesc = $row['description'];
-				}
-
-				/* Check if region does not overlap with any of the regions of an element of the last study of the patient */
-				$sql = "SELECT * FROM Study NATURAL JOIN Series NATURAL JOIN Element WHERE request_number IN ((SELECT request_number FROM Request WHERE patient_number IN (SELECT patient_number FROM Request WHERE request_number IN (SELECT request_number FROM Series WHERE series_id = 1 )))) AND study_date >= all(SELECT study_date FROM Study)";
-				$result = $connection->query($sql);
-
-				if($result == FALSE)
-				{
-					$info = $connection->errorInfo();
-					echo("<p>Error: {$info[2]}</p>");
-					exit();
-				}
-
-				foreach($result as $row)
-				{
-					$lastStudyDesc = $row['description'];
-					$lastSeries = $row['series_id'];
-					$lastElements[] = $row['elem_index'];
-				}
-
-				/* If the description of the last study is the same as the description of the series in which the new region was added */
-				if($newestDesc == $lastStudyDesc)
-				{
-					for ($i = 0; $i < count($lastElements); $i++)
+					if($result == FALSE)
 					{
-						$lastElemmIndex = $lastElements[$i];
-					    $sql = "SELECT region_overlaps_element($lastSeries, $lastElemmIndex, $x1, $y1, $x2, $y2) AS overlaps";
-						$result = $connection->query($sql);
+						$info = $connection->errorInfo();
+						echo("<p>Error: {$info[2]}</p>");
+						exit();
+					}
 
-						if($result == FALSE)
-						{
-							$info = $connection->errorInfo();
-							echo("<p>Error: {$info[2]}</p>");
-							exit();
-						}
+					foreach($result as $row)
+					{
+						$newestDesc = $row['description'];
+					}
 
-						foreach($result as $row)
-						{
-							$overlaps = $row['overlaps'];
-						}
+					/* Check if region does not overlap with any of the regions of an element of the last study of the patient */
+					$sql = "SELECT * FROM Study NATURAL JOIN Series NATURAL JOIN Element WHERE request_number IN ((SELECT request_number FROM Request WHERE patient_number IN (SELECT patient_number FROM Request WHERE request_number IN (SELECT request_number FROM Series WHERE series_id = 1 )))) AND study_date >= all(SELECT study_date FROM Study)";
+					$result = $connection->query($sql);
 
-						/* If any region of a certain element of the last study doesn't overlap with the new region inserted then throws an alert */
-						if($overlaps == 0)
+					if($result == FALSE)
+					{
+						$info = $connection->errorInfo();
+						echo("<p>Error: {$info[2]}</p>");
+						exit();
+					}
+
+					foreach($result as $row)
+					{
+						$lastStudyDesc = $row['description'];
+						$lastSeries = $row['series_id'];
+						$lastElements[] = $row['elem_index'];
+					}
+
+					/* If the description of the last study is the same as the description of the series in which the new region was added */
+					if($newestDesc == $lastStudyDesc)
+					{
+						for ($i = 0; $i < count($lastElements); $i++)
 						{
-							$sql = "SELECT name, patient_number FROM Request NATURAL JOIN Series NATURAL JOIN Patient WHERE series_id = $series_id";
+							$lastElemmIndex = $lastElements[$i];
+						    $sql = "SELECT region_overlaps_element($lastSeries, $lastElemmIndex, $x1, $y1, $x2, $y2) AS overlaps";
 							$result = $connection->query($sql);
 
 							if($result == FALSE)
@@ -159,17 +143,36 @@
 
 							foreach($result as $row)
 							{
-								$patient_name = $row['name'];
-								$patient_number = $row['patient_number'];
+								$overlaps = $row['overlaps'];
 							}
 
-							echo("<p>New clinic evidence for patient number $patient_number, $patient_name!</p>");
-							break;
-						}
-					}				
-				}
+							/* If any region of a certain element of the last study doesn't overlap with the new region inserted then throws an alert */
+							if($overlaps == 0)
+							{
+								$sql = "SELECT name, patient_number FROM Request NATURAL JOIN Series NATURAL JOIN Patient WHERE series_id = $series_id";
+								$result = $connection->query($sql);
 
-				echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
+								if($result == FALSE)
+								{
+									$info = $connection->errorInfo();
+									echo("<p>Error: {$info[2]}</p>");
+									exit();
+								}
+
+								foreach($result as $row)
+								{
+									$patient_name = $row['name'];
+									$patient_number = $row['patient_number'];
+								}
+
+								echo("<p>New clinic evidence for patient number $patient_number, $patient_name!</p>");
+								break;
+							}
+						}				
+					}
+
+					echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
+				}
 			}
 			else
 			{

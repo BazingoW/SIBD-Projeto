@@ -4,7 +4,7 @@
 		<hr/>
 		<form action="insertPatient.php" method="post">
  			<p>Name: <input type="text" name="newName" required/></p>
- 			<p>Birthday: <input type="date" name="newBirthday" required/></p>
+ 			<p>Birthday: <input type="text" name="newBirthday" required/></p>
  			<p>Address: <input type="text" name="newAddress" required/></p>
 			<p><input type="submit" value="Register"/></p>
 		</form>

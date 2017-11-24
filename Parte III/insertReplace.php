@@ -131,7 +131,7 @@
 			$connection->commit();
 
 			echo("<p>Device was replaced!</p>");
-			echo("<p><a href=\"getPatient.php\">Search for another patient</a></p>");
+			echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
 
 			$connection = null;
 		?>

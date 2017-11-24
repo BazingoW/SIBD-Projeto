@@ -3,7 +3,7 @@
 	<body>
 	<h3><strong><font color= '#66CC00'>Replace Device</font></strong></h3>
 	<hr/>
-	<form action="changeTables.php" method="post">
+	<form action="insertReplace.php" method="post">
 		<?php
 			if(isset($_GET['serialnum']) && isset($_GET['manufacturer']) && isset($_SESSION['patient_number']) && isset($_GET['start_date']) && isset($_GET['end_date']))
 			{
@@ -26,12 +26,15 @@
 				$serialnum = $_GET['serialnum'];
 				$manufacturer = $_GET['manufacturer'];
 				$patient_number = $_SESSION['patient_number'];
+				$end_date = $_GET['end_date'];
 				$_SESSION['serialnum'] = $serialnum;
 				$_SESSION['manufacturer'] = $manufacturer;
+				$_SESSION['end_date'] = $end_date;
 				$_SESSION['start_date'] = $_GET['start_date'];
-				$_SESSION['end_date'] = $_GET['end_date'];
 
-				$stmt = $connection->prepare("SELECT serialnum FROM Device WHERE serialnum<>'$serialnum' AND manufacturer='$manufacturer' AND serialnum NOT IN(SELECT serialnum FROM Wears WHERE serialnum<>'$serialnum' AND manufacturer='$manufacturer' AND TIMESTAMPDIFF(SECOND, end_date, CURRENT_TIMESTAMP()) <= 0)");
+				$stmt = $connection->prepare("SELECT serialnum FROM Device WHERE serialnum <> :serialnum AND manufacturer = :manufacturer AND serialnum NOT IN(SELECT serialnum FROM Wears WHERE serialnum <> :serialnum AND manufacturer = :manufacturer AND TIMESTAMPDIFF(SECOND, end_date, CURRENT_TIMESTAMP()) <= 0)");
+				$stmt->bindParam(':serialnum', $serialnum);
+				$stmt->bindParam(':manufacturer', $manufacturer);
 				$stmt->execute();
 
 				if($stmt == FALSE)
@@ -54,13 +57,18 @@
 						$serialnum=$row['serialnum'];
 						echo("<option value=\"$serialnum\">$serialnum</option>");
 					}
-
+		?>
+					</select>
+					</p>
+					<input type="submit" value="Replace"/>
+		<?php
 				}
 				else
 				{
 					echo("<p>No devices of that manufacturer are available at the current time!</p>");
 					echo("<p>Turn to the <a href=\"getDevices.php?patient_number=$patient_number\">previous page</a></p>");
 				}
+				
 			}
 			else
 			{
@@ -70,9 +78,7 @@
 			
 			$connection = null;
 		?>
-					</select>
-					</p>
-					<p><input type="submit" value="Replace"/></p>
+					
 	</form>
  	</body>
 </html>

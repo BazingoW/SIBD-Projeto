@@ -52,13 +52,6 @@
 				echo($row['birthday']);
 				echo("</td><td>");
 				echo($row['address']);
-				echo("</td><td>");
-				echo("<form action=\"newStudy.php\" method=\"get\">");
-				echo("<input type=\"hidden\" name=\"patient_number\" value=\"$patient_number\"/>");
-				echo("<input type=\"hidden\" name=\"name\" value=\"$name\"/>");
-				echo("<input type=\"hidden\" name=\"patient_name\" value=\"$patient_name\"/>");
-				echo("<input type=\"submit\" value=\"New Study\"/>");
-				echo("</form>");
 				echo("</td></tr>");
 			}
 

@@ -5,7 +5,7 @@
 		<form action="getPatient.php" method="post">
  			<p>Search for/Insert a patient: <input type="submit" value="Search"/></p>
 		</form>
-		<form action="createStudy.php" method="post">
+		<form action="newStudy.php" method="post">
  			<p>Create a study: <input type="submit" value="New Study"/></p>
 		</form>
 		<form action="getRegion.php" method="post">
