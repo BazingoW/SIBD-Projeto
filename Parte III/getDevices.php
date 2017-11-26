@@ -44,7 +44,7 @@
 
 				foreach($stmt as $row)
 				{
-					if($row['end_date'] >= date("Y-m-d"))
+					if($row['end_date'] >= date("Y-m-d H:i:s"))
 					{
 						echo("<tr><td><strong>");
 						$serialnum = $row['serialnum'];
@@ -80,7 +80,7 @@
 						echo($row['end_date']);
 						echo("</td></tr>");
 					}
-					
+
 				}
 
 				echo("</table>");
@@ -95,7 +95,7 @@
 			echo("<p>No patient was searched</p>");
 			echo("<p><a href=\"getPatient.php\">Search for a patient</a></p>");
 		}
-		
+
 	$connection = null;
 ?>
  	</body>
