@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h3><strong><font color= '#66CC00'>New Study</font></strong></h3>
+		<h3><strong><font color= '#66CC00'>New Region</font></strong></h3>
 		<hr/>
 		<?php
 
