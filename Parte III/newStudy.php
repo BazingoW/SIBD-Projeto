@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <html>
 	<body>
 	<h3><strong><font color= '#66CC00'>New Study</font></strong></h3>
