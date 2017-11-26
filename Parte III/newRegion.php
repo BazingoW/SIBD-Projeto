@@ -56,7 +56,7 @@
 					exit();
 				}
 
-				/* Series ID has to exists in the database */
+				/* Series ID has to exist in the database */
 				if($seriesExists == 0)
 				{
 					$connection->rollback();
