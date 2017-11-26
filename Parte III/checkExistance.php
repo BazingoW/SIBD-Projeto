@@ -3,21 +3,7 @@
 	<h3><strong><font color= '#66CC00'>Check Patient Existence</font></strong></h3>
 	<hr/>
 <?php
-		$host = "db.tecnico.ulisboa.pt";
-		$user = "ist181731";
-		$pass = "ahcu2726";
-		$dsn = "mysql:host=$host;dbname=$user";
-		try
-		{
-			$connection = new PDO($dsn, $user, $pass);
-		}
-		catch(PDOException $exception)
-		{
-			echo("<p> Error: ");
-			echo($exception->getMessage());
-			echo("</p>");
-			exit();
-		}
+		require 'connectDB.php';
 
 		$name = $_REQUEST['name'];
 		$findName = "%" . $name . "%";

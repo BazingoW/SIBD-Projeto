@@ -5,26 +5,11 @@
 	<hr/>
 	<form action="insertStudy.php" method="post">
 		<?php
-			
-			$host = "db.tecnico.ulisboa.pt";
-			$user = "ist181731";
-			$pass = "ahcu2726";
-			$dsn = "mysql:host=$host;dbname=$user";
-			try
-			{
-				$connection = new PDO($dsn, $user, $pass);
-			}
-			catch(PDOException $exception)
-			{
-				echo("<p> Error: ");
-				echo($exception->getMessage());
-				echo("</p>");
-				exit();
-			}
-	?>
+			require 'connectDB.php';
+		?>
 			<p>Patient Number:
 				<select name="patient_number">	
-	<?php
+		<?php
 					$sql = "SELECT * FROM Patient";
 					$result = $connection->query($sql);
 
@@ -41,7 +26,7 @@
 						$patient_name = $row['name'];
 						echo("<option value=\"$patient_number\">$patient_number | $patient_name</option>");
 					}
-	?>		
+		?>		
 				</select>
 			</p>
 			<p>Request Number: <input type="text" name="request_number" required/></p>
