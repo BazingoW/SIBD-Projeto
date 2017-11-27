@@ -20,7 +20,7 @@
 				echo("<p>Study not created</p>");
 				echo("<p>Turn to the <a href=\"newStudy.php\">previous page</a></p>");
 			}
-			else
+			else if(isset($_REQUEST['patient_number']) && isset($_REQUEST['request_number']) && isset($_REQUEST['description']) && isset($_REQUEST['study_date']) && isset($_REQUEST['doctor_id']) && isset($_REQUEST['serialnum']))
 			{
 				/* Begins transaction */
 				$connection->beginTransaction();
@@ -172,7 +172,12 @@
 					echo("<p>Study created</p>");
 					echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
 				}
-				
+			}
+			else
+			{
+				echo("<p>No form was filled!</p>");
+				echo("<p><a href=\"newStudy.php\">Create a new study</a></p>");
+
 			}
 
 			$connection = null;

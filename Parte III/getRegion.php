@@ -14,5 +14,8 @@
 			?>
 			<p><input type="submit" value="Add Region"/></p>
 		</form>
+		<?php
+			echo("<p> Turn to the <a href=\"homePage.php\">home page</a>");
+		?>
 	</body>
 </html>

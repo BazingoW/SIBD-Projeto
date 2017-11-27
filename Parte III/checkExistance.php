@@ -3,6 +3,9 @@
 	<h3><strong><font color= '#66CC00'>Check Patient Existence</font></strong></h3>
 	<hr/>
 <?php
+
+	if(isset($_REQUEST['name']))
+	{
 		require 'connectDB.php';
 
 		$name = $_REQUEST['name'];
@@ -29,15 +32,13 @@
 			foreach($stmt as $row)
 			{
 				echo("<tr><td>");
-				$patient_number=$row['patient_number'];
-				echo($patient_number);
+				echo("{$row['patient_number']}");
 				echo("</td><td>");
-				$patient_name=$row['name'];
-				echo("<a href=\"getDevices.php?patient_number=$patient_number\">$patient_name</a>");
+				echo("<a href=\"getDevices.php?patient_number={$row['patient_number']}&findName=$findName\">{$row['name']}</a>");
 				echo("</td><td>");
-				echo($row['birthday']);
+				echo("{$row['birthday']}");
 				echo("</td><td>");
-				echo($row['address']);
+				echo("{$row['address']}");
 				echo("</td></tr>");
 			}
 
@@ -52,10 +53,15 @@
 		<p><input type="submit" value="Register a New Patient"/></p>
 		</form>
 <?php
-	
-	echo("<p>Turn to the <a href=\"getPatient.php\">previous page</a></p>");
-	$connection = null;
+		echo("<p>Turn to the <a href=\"getPatient.php\">previous page</a></p>");
+		$connection = null;
+
+	}
+	else
+	{
+		echo("<p>No patient was searched</p>");
+		echo("<p><a href=\"getPatient.php\">Search for a patient</a></p>");
+	}
 ?>
-	
  	</body>
 </html>

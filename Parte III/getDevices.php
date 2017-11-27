@@ -9,9 +9,11 @@
 			require 'connectDB.php';
 
 			$patient_number = $_GET['patient_number'];
+			$findName = $_GET['findName'];
 			$_SESSION['patient_number'] = $patient_number;
 
-			$stmt = $connection->prepare("SELECT * FROM Wears WHERE patient_number='$patient_number' ORDER BY end_date DESC");
+			$stmt = $connection->prepare("SELECT * FROM Wears WHERE patient_number = :patient_number ORDER BY end_date DESC");
+			$stmt->bindParam(":patient_number", $patient_number);
 			$stmt->execute();
 
 			if($stmt == FALSE)
@@ -33,23 +35,19 @@
 					if($row['end_date'] >= date("Y-m-d H:i:s"))
 					{
 						echo("<tr><td><strong>");
-						$serialnum = $row['serialnum'];
 						echo($row['serialnum']);
 						echo("</strong></td><td><strong>");
-						$manufacturer = $row['manufacturer'];
 						echo($row['manufacturer']);
 						echo("</strong></td><td><strong>");
-						$start_date = $row['start_date'];
 						echo($row['start_date']);
 						echo("</strong></td><td><strong>");
-						$end_date = $row['end_date'];
 						echo($row['end_date']);
 						echo("</strong></td><td>");
 						echo("<form action=\"replaceDevices.php\" method=\"get\">");
-						echo("<input type=\"hidden\" name=\"serialnum\" value=\"$serialnum\"/>");
-						echo("<input type=\"hidden\" name=\"manufacturer\" value=\"$manufacturer\"/>");
-						echo("<input type=\"hidden\" name=\"start_date\" value=\"$start_date\"/>");
-						echo("<input type=\"hidden\" name=\"end_date\" value=\"$end_date\"/>");
+						echo("<input type=\"hidden\" name=\"serialnum\" value=\"{$row['serialnum']}\"/>");
+						echo("<input type=\"hidden\" name=\"manufacturer\" value=\"=\"{$row['manufacturer']}\"/>");
+						echo("<input type=\"hidden\" name=\"start_date\" value=\"{$row['start_date']}\"/>");
+						echo("<input type=\"hidden\" name=\"end_date\" value=\"{$row['end_date']}\"/>");
 						echo("<input type=\"submit\" value=\"Replace\"/>");
 						echo("</form>");
 						echo("</td></tr>");
@@ -70,10 +68,12 @@
 				}
 
 				echo("</table>");
+				echo("<p>Turn to the <a href=\"checkExistance.php?findName=$findName\">previous page</a></p>");
 			}
 			else
 			{
 				echo("<p>Patient never wore any device!</p>");
+				echo("<p>Turn to the <a href=\"checkExistance.php?findName=$findName\">previous page</a></p>");
 			}
 		}
 		else

@@ -4,6 +4,9 @@
 		<h3><strong><font color= '#66CC00'>Replacement Confirmation</font></strong></h3>
 		<hr/>
 		<?php
+
+		if(isset($_SESSION['patient_number']) && isset($_SESSION['serialnum']) && isset($_SESSION['manufacturer']) && isset($_SESSION['start_date']) && isset($_SESSION['end_date']))
+		{
 			require 'connectDB.php';
 
 			$connection->beginTransaction();
@@ -120,6 +123,12 @@
 			echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
 
 			$connection = null;
+		}
+		else
+		{
+			echo("<p>No patient was searched</p>");
+			echo("<p><a href=\"getPatient.php\">Search for a patient</a></p>");
+		}
 		?>
 	</body>
 </html>

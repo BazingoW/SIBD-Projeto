@@ -9,7 +9,7 @@
 				echo("<p>Please enter a valid birthday date</p>");
 				echo("<p>Turn to the <a href=\"getNewPatient.php\">previous page</a></p>");
 			}
-			else
+			else if(isset($_REQUEST['newName']) && isset($_REQUEST['newBirthday']) && isset($_REQUEST['newAddress']))
 			{
 				require 'connectDB.php';
 
@@ -30,6 +30,7 @@
 				$birthday = $_REQUEST['newBirthday'];
 				$address = $_REQUEST['newAddress'];
 
+				/* Prepare against SQL injection */
 				$stmt = $connection->prepare("INSERT INTO Patient VALUES (:patient_number, :name, :birthday, :address)");
 				$stmt->bindParam(':patient_number', $patient_number);
 				$stmt->bindParam(':name', $name);
@@ -47,6 +48,11 @@
 
 				echo("<p>Patient registered!</p>");
 				echo("<p>Turn to the <a href=\"homePage.php\">Home page</a></p>");
+			}
+			else
+			{
+				echo("<p>No patient was searched</p>");
+				echo("<p><a href=\"getPatient.php\">Search for a patient</a></p>");
 			}
 
 			$connection = null;
