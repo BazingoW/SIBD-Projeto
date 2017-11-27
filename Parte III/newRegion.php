@@ -70,7 +70,7 @@
 				else if($x1 > $x2 || $y1 > $y2)
 				{
 					$connection->rollback();
-					echo("<p>x2 and y2 have to be greater or equal than x1 and y2, respectively</p>");
+					echo("<p>x2 and y2 have to be greater or equal than x1 and y1, respectively</p>");
 					echo("<p>New Region not added</p>");
 					echo("<p>Turn to the <a href=\"newStudy.php\">previous page</a></p>");
 				}
