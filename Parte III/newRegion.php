@@ -13,14 +13,17 @@
 			$x2 = $_REQUEST['x2'];
 			$y2 = $_REQUEST['y2'];
 
-			if($_REQUEST['series_id'] <= 0 || $_REQUEST['elem_index'] <= 0 || $_REQUEST['x1'] < 0 || $_REQUEST['y1'] < 0 || $_REQUEST['x2'] < 0 || $_REQUEST['y2'] < 0 || $_REQUEST['x1'] > 1 || $_REQUEST['y1'] > 1 || $_REQUEST['x2'] > 1 || $_REQUEST['y2'] > 1 )
+			
+			if(isset($_REQUEST['series_id']) && isset($_REQUEST['elem_index']) && isset($_REQUEST['x1']) && isset($_REQUEST['y1']) && isset($_REQUEST['x2']) && isset($_REQUEST['y2']))
 			{
-				echo("<p>Please enter valid inputs. All inputs have to be greater or equal to zero</p>");
-				echo("<p>Turn to the <a href=\"getRegion.php\">previous page</a></p>");
+				if($_REQUEST['series_id'] <= 0 || $_REQUEST['elem_index'] <= 0 || $_REQUEST['x1'] < 0 || $_REQUEST['y1'] < 0 || $_REQUEST['x2'] < 0 || $_REQUEST['y2'] < 0 || $_REQUEST['x1'] > 1 || $_REQUEST['y1'] > 1 || $_REQUEST['x2'] > 1 || $_REQUEST['y2'] > 1 )
+				{
+					echo("<p>Please enter valid inputs. All inputs have to be greater or equal to zero</p>");
+					echo("<p>Turn to the <a href=\"getRegion.php\">previous page</a></p>");
+					exit();
 
-			}
-			else if(isset($_REQUEST['series_id']) && isset($_REQUEST['elem_index']) && isset($_REQUEST['x1']) && isset($_REQUEST['y1']) && isset($_REQUEST['x2']) && isset($_REQUEST['y2']))
-			{
+				}
+
 				/* Begins transaction */
 				$connection->beginTransaction();
 

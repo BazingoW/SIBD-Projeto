@@ -55,7 +55,7 @@
 			<p>Device:
 				<select name="serialnum">
 	<?php
-					$stmt = $connection->prepare("SELECT serialnum, manufacturer FROM Device WHERE (serialnum NOT IN(SELECT serialnum FROM Wears WHERE patient_number <> :patient_number)) OR (serialnum IN (SELECT serialnum FROM Wears WHERE patient_number = :patient_number))");
+					$stmt = $connection->prepare("SELECT serialnum, manufacturer FROM Device WHERE (serialnum NOT IN(SELECT serialnum FROM Wears WHERE patient_number <> :patient_number)) OR (serialnum IN (SELECT serialnum FROM Wears WHERE patient_number = :patient_number) AND manufacturer NOT IN(SELECT manufacturer FROM Wears WHERE patient_number = :patient_number))");
 					$stmt->bindParam(':patient_number', $patient_number);
 					$stmt->execute();
 
