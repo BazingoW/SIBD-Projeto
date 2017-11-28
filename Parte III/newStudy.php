@@ -4,11 +4,13 @@
 	<hr/>
 	<form action="insertStudy.php" method="post">
 		<?php
+			/* Connects to database */
 			require 'connectDB.php';
 		?>
 			<p>Patient Number:
 				<select name="patient_number">	
 		<?php
+					/* Shows all patients */
 					$sql = "SELECT * FROM Patient";
 					$result = $connection->query($sql);
 
@@ -34,6 +36,7 @@
 			<p>Doctor:
 				<select name="doctor_id">			
 		<?php
+					/* Shows all doctors */
 					$stmt = $connection->prepare("SELECT doctor_id FROM Doctor;");
 					$stmt->execute();
 

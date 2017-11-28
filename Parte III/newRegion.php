@@ -13,7 +13,7 @@
 			$x2 = $_REQUEST['x2'];
 			$y2 = $_REQUEST['y2'];
 
-			
+			/* Protects against going direclty to this web page */			
 			if(isset($_REQUEST['series_id']) && isset($_REQUEST['elem_index']) && isset($_REQUEST['x1']) && isset($_REQUEST['y1']) && isset($_REQUEST['x2']) && isset($_REQUEST['y2']))
 			{
 				if($_REQUEST['series_id'] <= 0 || $_REQUEST['elem_index'] <= 0 || $_REQUEST['x1'] < 0 || $_REQUEST['y1'] < 0 || $_REQUEST['x2'] < 0 || $_REQUEST['y2'] < 0 || $_REQUEST['x1'] > 1 || $_REQUEST['y1'] > 1 || $_REQUEST['x2'] > 1 || $_REQUEST['y2'] > 1 )
@@ -67,7 +67,7 @@
 					echo("<p>New Region not added</p>");
 					echo("<p>Turn to the <a href=\"newStudy.php\">previous page</a></p>");
 				}
-				else if($x1 > $x2 || $y1 > $y2)
+				else if($x1 > $x2 || $y1 > $y2) /* x2 and y2 have to greater or equal than x1 and y1 */
 				{
 					$connection->rollback();
 					echo("<p>x2 and y2 have to be greater or equal than x1 and y1, respectively</p>");
@@ -76,6 +76,7 @@
 				}
 				else
 				{
+					/* Commit changes */
 					$connection->commit();
 					echo("<p>New Region Added</p>");
 

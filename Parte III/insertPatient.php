@@ -6,13 +6,14 @@
 			
 			if(isset($_REQUEST['newName']) && isset($_REQUEST['newBirthday']) && isset($_REQUEST['newAddress']))
 			{
+				/* Checks if the birthday date introduced is valid */
 				if($_REQUEST['newBirthday'] > date("Y-m-d"))
 				{
 					echo("<p>Please enter a valid birthday date</p>");
 					echo("<p>Turn to the <a href=\"getNewPatient.php\">previous page</a></p>");
 					exit();
 				}
-
+				/* Connects to database */
 				require 'connectDB.php';
 
 				$sql = "SELECT patient_number FROM Patient";

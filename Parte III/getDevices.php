@@ -25,6 +25,7 @@
 
 			$nrows= $stmt->rowCount();
 
+			/* If the patient wore and/or wears any device, it will dispaly them */
 			if($nrows > 0)
 			{
 				echo("<table border=\"0\" cellspacing=\"5\" bordercolor='#66CC00'>");

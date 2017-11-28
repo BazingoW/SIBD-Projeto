@@ -14,9 +14,10 @@
 			$serialnum = $_REQUEST['serialnum'];
 			$series_name = $description;
 
-			
+			/* Protects against going direclty to this web page */
 			if(isset($_REQUEST['patient_number']) && isset($_REQUEST['request_number']) && isset($_REQUEST['description']) && isset($_REQUEST['study_date']) && isset($_REQUEST['doctor_id']) && isset($_REQUEST['serialnum']))
 			{
+				/* Study date couldn't be greater than today */
 				if($_REQUEST['study_date'] > date("Y-m-d"))
 				{
 					echo("<p>Please enter a valid date</p>");

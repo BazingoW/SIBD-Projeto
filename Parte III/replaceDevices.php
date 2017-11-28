@@ -5,8 +5,10 @@
 	<hr/>
 	<form action="insertReplace.php" method="post">
 		<?php
+			/* Protects against going direclty to this web page */
 			if(isset($_GET['serialnum']) && isset($_GET['manufacturer']) && isset($_SESSION['patient_number']) && isset($_GET['start_date']) && isset($_GET['end_date']))
 			{
+				/* Connects to database */
 				require 'connectDB.php';
 
 				$serialnum = $_GET['serialnum'];
@@ -32,6 +34,7 @@
 
 				$nrows= $stmt->rowCount();
 
+				/* If there are devices available of that manufacturer */
 				if($nrows > 0)
 				{	
 		?>

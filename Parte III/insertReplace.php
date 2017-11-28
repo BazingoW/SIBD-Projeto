@@ -4,11 +4,13 @@
 		<h3><strong><font color= '#66CC00'>Replacement Confirmation</font></strong></h3>
 		<hr/>
 		<?php
-
+		/* Protects against going direclty to this web page */
 		if(isset($_SESSION['patient_number']) && isset($_SESSION['serialnum']) && isset($_SESSION['manufacturer']) && isset($_SESSION['start_date']) && isset($_SESSION['end_date']))
 		{
+			/* Connects to database */
 			require 'connectDB.php';
 
+			/* Begins transaction */
 			$connection->beginTransaction();
 
 			$patient_number = $_SESSION['patient_number'];
@@ -16,7 +18,6 @@
 			$oldManufacturer = $_SESSION['manufacturer'];
 			$oldStartDate = $_SESSION['start_date'];
 			$oldEndDate = $_SESSION['end_date'];
-
 			$currentTimeDate = date("Y-m-d H:i:s");
 
 			$sql = "SELECT * FROM Period";
