@@ -24,6 +24,7 @@
 
 		$nrows= $stmt->rowCount();
 
+		/* If there are patients that contain the substring */
 		if($nrows > 0)
 		{
 			echo("<table border=\"0\" cellspacing=\"5\" bordercolor='#66CC00'>");

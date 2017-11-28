@@ -45,7 +45,7 @@
 						echo("</strong></td><td>");
 						echo("<form action=\"replaceDevices.php\" method=\"get\">");
 						echo("<input type=\"hidden\" name=\"serialnum\" value=\"{$row['serialnum']}\"/>");
-						echo("<input type=\"hidden\" name=\"manufacturer\" value=\"=\"{$row['manufacturer']}\"/>");
+						echo("<input type=\"hidden\" name=\"manufacturer\" value=\"{$row['manufacturer']}\"/>");
 						echo("<input type=\"hidden\" name=\"start_date\" value=\"{$row['start_date']}\"/>");
 						echo("<input type=\"hidden\" name=\"end_date\" value=\"{$row['end_date']}\"/>");
 						echo("<input type=\"submit\" value=\"Replace\"/>");

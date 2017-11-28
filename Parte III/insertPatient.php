@@ -4,13 +4,15 @@
 		<hr/>
 		<?php
 			
-			if($_REQUEST['newBirthday'] > date("Y-m-d"))
+			if(isset($_REQUEST['newName']) && isset($_REQUEST['newBirthday']) && isset($_REQUEST['newAddress']))
 			{
-				echo("<p>Please enter a valid birthday date</p>");
-				echo("<p>Turn to the <a href=\"getNewPatient.php\">previous page</a></p>");
-			}
-			else if(isset($_REQUEST['newName']) && isset($_REQUEST['newBirthday']) && isset($_REQUEST['newAddress']))
-			{
+				if($_REQUEST['newBirthday'] > date("Y-m-d"))
+				{
+					echo("<p>Please enter a valid birthday date</p>");
+					echo("<p>Turn to the <a href=\"getNewPatient.php\">previous page</a></p>");
+					exit();
+				}
+
 				require 'connectDB.php';
 
 				$sql = "SELECT patient_number FROM Patient";
