@@ -294,7 +294,7 @@ insert into Region values (17, 1, 0.567, 0.890, 0.345, 0.789);
 insert into Region values (17, 2, 0.465, 0.443, 0.556, 0.954);
 insert into Region values (18, 1, 0.586, 0.669, 0.665, 0.753);
 insert into Region values (18, 2, 0.123, 0.456, 0.789, 0.890);
-insert into Region values (19, 1, 0.643, 0.717, 0.542, 0.999);
+insert into Region values (19, 1, 0.542, 0.717, 0.600, 0.999);
 insert into Region values (19, 2, 0.545, 0.878, 0.688, 0.727);
 insert into Region values (20, 1, 0.534, 0.796, 0.968, 0.998);
 insert into Region values (20, 2, 0.321, 0.543, 0.765, 0.987);
