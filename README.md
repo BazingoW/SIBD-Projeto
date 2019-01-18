@@ -1,4 +1,4 @@
-# Projett SIBD
+# Information Systems and Databases Project
 
 A project the a Database course mostly done by
 
